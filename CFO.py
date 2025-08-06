@@ -3,8 +3,7 @@ import pandas as pd
 import google.generativeai as genai
 
 # === Set up Gemini API key ===
-GOOGLE_API_KEY = "AIzaSyDmhMf1y-BEjAb6Js3dH6KgsSajDBbntS0"
-genai.configure(api_key=GOOGLE_API_KEY)
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # === Load CSV data ===
@@ -130,3 +129,4 @@ if user_input := st.chat_input("Ask a CFO-related question..."):
             if not relevant_context.empty:
                 with st.expander("📚 Context used from CFO Handbook"):
                     st.dataframe(relevant_context)
+
